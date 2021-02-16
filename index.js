@@ -1,7 +1,17 @@
 const express = require('express');
+const cookieParser  = require('cookie-parser')
 const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
+
+//importing from mongoose.js
+const db = require('./config/mongoose');
+
+app.use(express.urlencoded());
+
+//seting up cookie
+app.use(cookieParser());
+
 app.use(express.static('./assets'))
 
 app.use(expressLayouts);
