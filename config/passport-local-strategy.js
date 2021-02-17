@@ -48,6 +48,26 @@ passport.deserializeUser(function(id,done){
         }
         return done(null,user);
     })
-})
+});
+
+//Sending data of current user to views
+//check if user is authenticated and will be using te function as a middlewear
+passport.checkAuthentication = function(req,res,next){
+    // if the user is signed in ,then passed on the request to the next function(controller's action)
+    if(req.isAuthenticated()){
+        return next();
+    }
+
+    // if the user is not signedin
+    return res.redirect('/user/sign-in')
+}
+
+passport.setAuthenticatedUser = function(req,res,next){
+    if(req.isAuthenticated()){
+        // req.user containes the current signed in user from session cookie and we r just sending this to the locals for the views
+        res.locals.user = req.user;
+    }
+    next();
+}
 
 module.exports = passport;
