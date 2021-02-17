@@ -10,9 +10,10 @@ const User = require('../models/user');
 passport.use(new LocalStrategy({
    usernameField:"email",                   // "email" same as that in schema
  },
-   function(email,password,done){ // done is the callback function which is reporting bacj to passport.js
+   function(email,password,done)  {       // done is the callback function which is reporting bacj to passport.js
+
       //find the user and establish the identity
-      User.findOne({email: email},function(er,user){  // first email is property and from schema and second email is parameter which we passes in the above function
+      User.findOne({email: email},function(err,user){  // first email is property and from schema and second email is parameter which we passes in the above function
           if(err){
               console.log("error in finding user --> passport")
               // this will report an error to passport

@@ -48,6 +48,6 @@ module.exports.create = function (req, res) {
 
 //get up the signin form data
 module.exports.createSession = function (req, res) {
-    //
+    return res.redirect('/')
 }
 
