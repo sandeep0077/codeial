@@ -10,6 +10,10 @@ module.exports.profile = function (req, res) {
 }
 
 module.exports.signUp = function (req, res) {
+    if(req.isAuthenticated()){
+       return res.redirect('/user/profile');
+    }
+
     return res.render('user_sign_up', {
         title: "Codeial | Signup"
     })
@@ -17,6 +21,11 @@ module.exports.signUp = function (req, res) {
 
 // render the signin page
 module.exports.signIn = function (req, res) {
+
+    if(req.isAuthenticated()){
+       return res.redirect('/user/profile');
+    }
+
     return res.render('user_sign_in', {
         title: "Codeial | Signin"
     })
