@@ -1,4 +1,4 @@
-//importing the model
+//importing the model for schema from user.js(models)
 const User = require('../models/user');
 
 

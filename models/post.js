@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-const postSchema = newmongoose.Schema({
+const postSchema = new mongoose.Schema({
     content: {
     type: String,
     required: true
 },
 user: {
- type:mongoose.Schema.Types.ObjectId,
+ type: mongoose.Schema.Types.ObjectId,
  ref: "User"
 }
 },{
@@ -18,4 +18,4 @@ const Post = mongoose.model('/Post',postSchema);
 // export the model
 module.exports = Post;
 
-//next step is to go to the views(home.ejs) and create a form where this collection will have a document in it i.e an entry is created in he database
+//next step is to go to the views(home.ejscreated post form) and create a form where this collection will have a document in it i.e an entry is created in he database
