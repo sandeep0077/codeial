@@ -1,4 +1,25 @@
-body{
-    margin:0;
-    /*text-align: center; */
-}
+body {
+  margin: 0;
+  /*text-align: center; */ }
+  body #layout-main {
+    height: 100vh; }
+  body #header-div {
+    display: flex;
+    background-color: khaki;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    padding: 5px;
+    position: relative; }
+    body #header-div ul {
+      display: flex;
+      margin-top: -24px;
+      margin-left: 85vw;
+      position: absolute; }
+      body #header-div ul li {
+        display: flex;
+        justify-content: space-between; }
+        body #header-div ul li a {
+          text-decoration: none;
+          padding: 5px; }

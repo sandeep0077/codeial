@@ -9,19 +9,24 @@
         <%= title %>
     </title>
     <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
     <%- style %>
 </head>
 
 <body>
 
+    <div id="header-div">
+        <%- include('_header'); -%>
+    </div>
 
-    <%- include('_header'); -%>
-
-      <%- body -%>
-
+    <main id="layout-main">
+        <%- body -%>
+    </main>
     <%- include('_footer'); -%>
 
-<%- script %>
+        <%- script %>
 </body>
 
 </html>
