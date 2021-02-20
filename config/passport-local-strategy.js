@@ -51,7 +51,7 @@ passport.deserializeUser(function(id,done){
 });
 
 //Sending data of current user to views
-//check if user is authenticated and will be using te function as a middlewear
+//check if user is authenticated and will be using the function as a middlewear
 passport.checkAuthentication = function(req,res,next){
     // if the user is signed in ,then passed on the request to the next function(controller's action)
     if(req.isAuthenticated()){

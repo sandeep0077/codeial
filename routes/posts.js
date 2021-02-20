@@ -6,7 +6,10 @@ const router = express.Router();
 // import the controller to get the action 
 const postController = require('../controllers/posts_controller');
 
-router.post('/create',postController.create);
+
+// if the user is loggedin then only show the post
+//checkAuthe.. function is created in passport-local-strategy(config folder)
+router.post('/create',passport.checkAuthentication,postController.create);
 
 module.exports = router;
 //since we create this "post.js" router we need to call it from "index.js(routes)" just like we did with "user.js(routes)"

@@ -13,7 +13,7 @@ user: {
 });
 
 // before exporting we need to tell that this is going be the model in the database
-const Post = mongoose.model('/Post',postSchema);
+const Post = mongoose.model('Post',postSchema);
 
 // export the model
 module.exports = Post;

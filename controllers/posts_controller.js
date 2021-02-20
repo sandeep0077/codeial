@@ -15,7 +15,8 @@ module.exports.create = function(req,res){
     },function(err,post){
         if(err){
             console.log("error in creating the post");
-            return res.redirect('back');
+            return;
         }
+        return res.redirect('back');
     })
 }

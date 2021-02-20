@@ -4,15 +4,33 @@
 
 <section id="feed-post">
 
-     <h4>Posts</h4>
+    <h4>Posts</h4>
 
-     <!--create a form which corresponds to 'post' schema -->
-     <form action="/posts/create" id="new-post-form" method="POST">
+    <!-- obviously locals is an object  -->
+    <% if(locals.user) { %>
+    <!--create a form which corresponds to 'post' schema -->
+    <form action="/posts/create" id="new-post-form" method="POST">
 
-    <!--name= content bcz in post schema we created a field called content-->
+        <!--name= content bcz in post schema we created a field called content-->
         <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
         <input type="submit" value="Post">
 
-     </form>
+    </form>
+        <% } %>
+    <div id="posts-list-container">
+        <ul>
+            <% for(post of posts) { %>
+                <li>
+                    <p>
+                    <%= post.content %> <br>
+                        <small>
+                            <%= post.user.name %>
+                        </small>
+                    </p>    
+                </li>
+
+                <%} %>
+        </ul>
+    </div>
 
 </section>
