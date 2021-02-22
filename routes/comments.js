@@ -11,5 +11,9 @@ const commentsController = require('../controllers/comments_controller');
 //checkAuthe.. function is created in passport-local-strategy(config folder)
 router.post('/create',passport.checkAuthentication,commentsController.create);
 
+//create and authenticate route
+// 2n check if the user is loggedin
+router.get('/destroy/:id',passport.checkAuthentication,commentsController.destroy)
+
 module.exports = router;
 //since we create this "post.js" router we need to call it from "index.js(routes)" just like we did with "user.js(routes)"

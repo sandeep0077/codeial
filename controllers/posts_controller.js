@@ -30,8 +30,8 @@ module.exports.destroy = function(req,res){
     Post.findById((req.params.id),function(err,post){
     
         // check user who is deleting the post has written the post
-        // initially we are getting the user id(post's schema(module))..post.user ig going to return the string id
-        //when we are comparing id's of two object we need to convert it to string..so insted of writing req.user._id we write re.uer.id which
+        // initially we are getting the user id(post's schema(module))..post.user is going to return the string id
+        //when we are comparing id's of two object we need to convert it to string..so insted of writing req.user._id we write re.user.id which
         // automatically converts the id in to string
         if(post.user == req.user.id){
             // finally if the post user and the logged in user are same we delete the post

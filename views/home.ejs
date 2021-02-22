@@ -22,9 +22,9 @@
                     <% for(post of posts) { %>
                         <li>
                             <p>
-                                    <!--Create a button for deletion-->
-<!--Button should only be visible when the user is signedIn and only to the user which is signed in is equal to user who created the post-->
-                                  <%  if(locals.user && locals.user.id == post.user.id) { %>
+                                <!--Create a button for deletion-->
+                                <!--Button should only be visible when the user is signedIn and only to the user which is signed in is equal to user who created the post-->
+                                <% if(locals.user && locals.user.id==post.user.id) { %>
                                     <small>
                                         <a href="/posts/destroy/<%= post.id %>">
                                             Delete Post
@@ -32,11 +32,11 @@
                                     </small>
 
                                     <% } %>
-                                
-                                <%= post.content %> <br>
-                                    <small>
-                                        <%= post.user.name %>
-                                    </small>
+
+                                        <%= post.content %> <br>
+                                            <small>
+                                                <%= post.user.name %>
+                                            </small>
                             </p>
 
 
@@ -52,21 +52,33 @@
                                     </form>
 
                                     <% } %>
-                                 <!--users doesnot need to be loggedin while seeing the comments that's why we are not using if statements-->
-                                    <div class="post-comments-list">
-                                        <ul id="post-comments-<%= post._id %>">
-                                            <!--this is a nested for loop,thereis another for loop above for (post of posts) line22-->
-                                            <% for(comment of post.comments){%>
-                                                <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: orangered;">
-                                                  <%=  comment.content %>
-                                                  <br>
-                                                  <small style="color:deepskyblue;">
-                                                      <%= comment.user.name %>
-                                                  </small>
-                                                </p>
+                                        <!--users doesnot need to be loggedin while seeing the comments that's why we are not using if statements-->
+                                        <div class="post-comments-list">
+                                            <ul id="post-comments-<%= post._id %>">
+                                                <!--this is a nested for loop,thereis another for loop above for (post of posts) line22-->
+                                                <% for(comment of post.comments){ %>
+
+                                                    <!--Create a button for deletion-->
+                                                    <!--Button should only be visible when the user is signedIn and only to the user which is signed in is equal to user who created the post-->
+                                                    <% if(locals.user && locals.user.id==comment.user.id) { %>
+                                                        <small>
+                                                            <a href="/comments/destroy/<%= comment.id %>">
+                                                                Delete comment
+                                                            </a>
+                                                        </small>
+
+                                                     <% } %>
+
+                                                        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: orangered;">
+                                                            <%= comment.content %>
+                                                                    <br>
+                                                                    <small style="color:deepskyblue;">
+                                                                        <%= comment.user.name %>
+                                                                    </small>
+                                                        </p>
                                                 <%} %>
-                                        </ul>
-                                    </div>
+                                            </ul>
+                                        </div>
                             </div>
 
                         </li>
