@@ -9,12 +9,16 @@ body{
     #header-div{
         display: flex;
         background-color: khaki;
+        height: 40px;
+        width: 100%;
         justify-content: space-between;
         font-size: 1rem;
         font-family:'Courier New', Courier, monospace;
          font-weight: 600;  
          padding: 5px;
          position: relative;
+         overflow:hidden;
+         object-fit:scale-down;
 
         ul{
             display: flex;
@@ -26,6 +30,9 @@ body{
                 display: flex;
                 justify-content: space-between;
                 a{
+                    display: inline;
+                
+                    text-align: center;
                     text-decoration: none;
                     padding: 5px;
                 }
@@ -33,3 +40,4 @@ body{
         }
     }
 }
+

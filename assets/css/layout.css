@@ -6,12 +6,16 @@ body {
   body #header-div {
     display: flex;
     background-color: khaki;
+    height: 40px;
+    width: 100%;
     justify-content: space-between;
     font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
     padding: 5px;
-    position: relative; }
+    position: relative;
+    overflow: hidden;
+    object-fit: scale-down; }
     body #header-div ul {
       display: flex;
       margin-top: -24px;
@@ -21,5 +25,7 @@ body {
         display: flex;
         justify-content: space-between; }
         body #header-div ul li a {
+          display: inline;
+          text-align: center;
           text-decoration: none;
           padding: 5px; }
