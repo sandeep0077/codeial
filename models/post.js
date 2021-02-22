@@ -9,10 +9,10 @@ const postSchema = new mongoose.Schema({
         ref: "User"
     },
 
-    //incluse the arrays of ids of all comments in this post schema itself
+    //incluse the arrays of ids of all comments in this post schema itself so that the comments loads with posts
     comments:[ {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'comment'
+        ref:'Comment'
     }]
 }, {
     timestamps: true
