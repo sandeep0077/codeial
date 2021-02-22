@@ -10,8 +10,11 @@ module.exports.home = function (req, res) {
   // });
   // populate the whole user object(contains its name email etc) insted of userid for each post
   Post.find({})
+    //populating the comments and users at the same time
+  .populate('user')
   .populate({
     // "comments" from post.js(models) file in  postSchema
+    //preloading the comments and displaying related users
     path:'comments',
     populate: {
       path: 'user'

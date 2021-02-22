@@ -41,12 +41,17 @@
                                     </form>
 
                                     <% } %>
-
+                                 <!--users doesnot need to be loggedin while seeing the comments that's why we are not using if statements-->
                                     <div class="post-comments-list">
                                         <ul id="post-comments-<%= post._id %>">
+                                            <!--this is a nested for loop,thereis another for loop above for (post of posts) line22-->
                                             <% for(comment of post.comments){%>
-                                                <p>
-                                                    comment.content
+                                                <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: orangered;">
+                                                  <%=  comment.content %>
+                                                  <br>
+                                                  <small style="color:deepskyblue;">
+                                                      <%= comment.user.name %>
+                                                  </small>
                                                 </p>
                                                 <%} %>
                                         </ul>
