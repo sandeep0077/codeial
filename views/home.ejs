@@ -29,3 +29,20 @@
             </div>
 
 </section>
+
+
+<!--  we need to show all the users but first we need to get all the users from"home controller"-->
+<section id="user-friends">
+  <h4>
+      Friends
+  </h4>
+ 
+  <!-- all_users is frome home controller-->
+  <% for(u of all_users) { %>
+     <p>
+         <!--Changed the route of the profile now go to user route -->
+         <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
+     </p>
+    <% } %>
+
+</section>

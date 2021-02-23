@@ -1,6 +1,6 @@
 //importing the model
 const Post = require('../models/post');
-
+const User = require('../models/user')
 
 module.exports.home = function (req, res) {
 
@@ -21,11 +21,18 @@ module.exports.home = function (req, res) {
     }
   })
   .exec(function (err, posts) {
-    return res.render('home', {
-      title: 'Codeial Home',
-      //putting the post into the context and sending it to the home view
-      posts: posts
-    });
+
+    // to show list of all the users on home page
+    // to get all the users 
+    User.find({},function(err,users){
+      return res.render('home', {
+        title: 'Codeial Home',
+        //putting the post into the context and sending it to the home view
+        posts: posts,
+        all_users: users
+      });
+    })
+    
 
   });
 }

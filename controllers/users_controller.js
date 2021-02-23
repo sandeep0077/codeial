@@ -3,10 +3,16 @@ const User = require('../models/user');
 
 
 module.exports.profile = function (req, res) {
-    return res.render('user_profile', {
-        title: "User's page",
-        page: "ejs or controller page :)"
+    // show the profile of the user to which this id belongs to
+    User.findById(req.params.id,function(err,user){
+        return res.render('user_profile', {
+            title: "User's page",
+            page: "ejs or controller page :)",
+            profile_user: user
+        });
+        // now map this whole thing to the profilepage other wise it won't shows 
     })
+ 
 }
 
 module.exports.signUp = function (req, res) {
