@@ -1,48 +1,47 @@
-<h1>
-    Codeial / <%= title %>
-</h1>
+<link rel="stylesheet" href="/css/home.css">
+<div id="home-container">
+    <section id="feed-post">
 
-<section id="feed-post">
-
-    <h4>Posts</h4>
-
-    <!-- obviously locals is an object  -->
-    <% if(locals.user) { %>
-        <!--create a form which corresponds to 'post' schema -->
-        <form action="/posts/create" id="new-post-form" method="POST">
-
-            <!--name= content bcz in post schema we created a field called content-->
-            <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
-            <input type="submit" value="Post">
-
-        </form>
+        <h4>Posts</h4>
+    
+        <!-- obviously locals is an object  -->
+        <% if(locals.user) { %>
+            <!--create a form which corresponds to 'post' schema -->
+            <form action="/posts/create" id="new-post-form" method="POST">
+    
+                <!--name= content bcz in post schema we created a field called content-->
+                <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
+                <input type="submit" value="Post">
+    
+            </form>
+            <% } %>
+                <div id="posts-list-container">
+                    <ul>
+                        <% for(post of posts) { %>
+                          
+                     <!--include the _post.ejs partial-->       
+                          <%- include('_post') -%>  
+    
+                            <%} %>
+                    </ul>
+                </div>
+    
+    </section>
+    
+    
+    <!--  we need to show all the users but first we need to get all the users from"home controller"-->
+    <section id="user-friends">
+      <h4>
+          Friends
+      </h4>
+     
+      <!-- all_users is frome home controller-->
+      <% for(u of all_users) { %>
+         <p>
+             <!--Changed the route of the profile now go to user route -->
+             <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
+         </p>
         <% } %>
-            <div id="posts-list-container">
-                <ul>
-                    <% for(post of posts) { %>
-                      
-                 <!--include the _post.ejs partial-->       
-                      <%- include('_post') -%>  
-
-                        <%} %>
-                </ul>
-            </div>
-
-</section>
-
-
-<!--  we need to show all the users but first we need to get all the users from"home controller"-->
-<section id="user-friends">
-  <h4>
-      Friends
-  </h4>
- 
-  <!-- all_users is frome home controller-->
-  <% for(u of all_users) { %>
-     <p>
-         <!--Changed the route of the profile now go to user route -->
-         <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
-     </p>
-    <% } %>
-
-</section>
+    
+    </section>
+</div>

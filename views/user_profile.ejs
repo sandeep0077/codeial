@@ -4,6 +4,22 @@
 
     <h1>Codeial/Profile Page </h1>
 
+<!--  if user matches then show the form else only show the profile info-->
+<!-- profile_user comes from user contrroller-->
+<% if(user.id == profile_user.id) { %>
+
+<!-- create the form that form will be matches to a route ann then to the action-->
+<form action="/user/update/<%= profile_user.id %>" method="POST">
+    <!--value= ---.name from user schema(models)-->
+<input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
+<input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
+<input type="submit" value="update">
+
+</form>
+<% } else{  %>
     <!--Make changes from user.name to profile_user.name(users_controller) -->
-<p><%= profile_user.name %></p>
-<p><%= profile_user.email %></p>
+    <p><%= profile_user.name %></p>
+    <p><%= profile_user.email %></p>
+
+    <!-- now create a route-->
+  <%  } %>

@@ -6,6 +6,9 @@ const usersController = require('../controllers/users_controller');
 
 // add the id to it to display the relevant user profile now make changes in user controller 
 router.get('/profile/:id',passport.checkAuthentication, usersController.profile);
+// create an action for updating
+router.post('/update/:id',passport.checkAuthentication, usersController.update);
+
 router.get('/sign-in', usersController.signIn);
 router.get('/sign-up', usersController.signUp);
 

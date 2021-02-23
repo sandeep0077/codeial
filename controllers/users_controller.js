@@ -7,7 +7,6 @@ module.exports.profile = function (req, res) {
     User.findById(req.params.id,function(err,user){
         return res.render('user_profile', {
             title: "User's page",
-            page: "ejs or controller page :)",
             profile_user: user
         });
         // now map this whole thing to the profilepage other wise it won't shows 
@@ -15,6 +14,21 @@ module.exports.profile = function (req, res) {
  
 }
 
+module.exports.update = function(req,res){
+    // check if the current loggedin user is requesting update form
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            return res.redirect('back');
+        });
+    }else{
+        // frist time handling error
+        return res.status(401).send('Unauthorized');
+    }
+}
+
+
+
+//Render the signup page
 module.exports.signUp = function (req, res) {
     if(req.isAuthenticated()){
        return res.redirect('/user/profile');
