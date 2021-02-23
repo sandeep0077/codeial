@@ -1,0 +1,47 @@
+<li>
+    <p>
+        <!--Create a button for deletion-->
+        <!--Button should only be visible when the user is signedIn and only to the user which is signed in is equal to user who created the post-->
+        <% if(locals.user && locals.user.id==post.user.id) { %>
+            <small>
+                <a href="/posts/destroy/<%= post.id %>">
+                    Delete Post
+                </a>
+            </small>
+
+            <% } %>
+
+                <%= post.content %> <br>
+                    <small>
+                        <%= post.user.name %>
+                    </small>
+    </p>
+
+
+    <div class="post-comments">
+        <!-- show the form only to those users who sre signed in-->
+        <% if(locals.user) { %>
+            <!--comments is a route-->
+            <form action="/comments/create" method="POST">
+                <input type="text" name="content" placeholder="Type here top add comment">
+                <!--send the id of the post to which the comment needs to be added-->
+                <input type="hidden" name="post" value="<%= post._id %>">
+                <input type="submit" value="Add Comment">
+            </form>
+
+            <% } %>
+                <!--users doesnot need to be loggedin while seeing the comments that's why we are not using if statements-->
+                <div class="post-comments-list">
+                    <ul id="post-comments-<%= post._id %>">
+                        <!--this is a nested for loop,thereis another for loop above for (post of posts) line22-->
+                        <% for(comment of post.comments){ %>
+
+                        <!--Call _comment.ejs partials-->
+                        <%- include('_comment') -%>
+  
+                        <%} %>
+                    </ul>
+                </div>
+    </div>
+
+</li>

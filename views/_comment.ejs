@@ -1,0 +1,20 @@
+<li>
+    <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: orangered;">
+        <!--Create a button for deletion-->
+        <!--Button should only be visible when the user is signedIn and only to the user which is signed in is equal to user who created the post-->
+        <% if(locals.user && locals.user.id==comment.user.id) { %>
+            <small>
+                <a href="/comments/destroy/<%= comment.id %>">
+                    Delete comment
+                </a>
+            </small>
+
+            <% } %>
+
+                <%= comment.content %>
+                    <br>
+                    <small style="color:deepskyblue;">
+                        <%= comment.user.name %>
+                    </small>
+    </p>
+</li>
