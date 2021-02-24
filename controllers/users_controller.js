@@ -2,15 +2,23 @@
 const User = require('../models/user');
 
 
-module.exports.profile = function (req, res) {
+module.exports.profile = function(req, res) {
     // show the profile of the user to which this id belongs to
     User.findById(req.params.id,function(err,user){
-        return res.render('user_profile', {
-            title: "User's page",
-            profile_user: user
-        });
+        if(err){
+            console.log('error in finding user while accessing profile');
+            return;
+        }
+        if(!user) {
+            return res.redirect('back')
+        } else {
+            return res.render('user_profile', {
+                title: "User's page",
+                profile_user: user
+            });
+        }
         // now map this whole thing to the profilepage other wise it won't shows 
-    })
+    });
  
 }
 
@@ -29,7 +37,7 @@ module.exports.update = function(req,res){
 
 
 //Render the signup page
-module.exports.signUp = function (req, res) {
+module.exports.signUp = function(req, res) {
     if(req.isAuthenticated()){
        return res.redirect('/user/profile');
     }
@@ -40,7 +48,7 @@ module.exports.signUp = function (req, res) {
 };
 
 // render the signin page
-module.exports.signIn = function (req, res) {
+module.exports.signIn = function(req, res) {
 
     if(req.isAuthenticated()){
        return res.redirect('/user/profile');
