@@ -5,24 +5,31 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const User = require('../models/user');
 
+
+// whenever we r signing in this localStrtegy is being called
 //creating local authentication using passport
 //we need to tell passport to use this LocalStrategy that we created
 passport.use(new LocalStrategy({
-   usernameField:"email",                   // "email" same as that in schema
+     // "email" same as that in schema
+   usernameField:"email", 
+   // this allows us to set the first argument to req in call back function so that we can pass the flash message through request
+   passReqToCallback: true                 
  },
-   function(email,password,done)  {       // done is the callback function which is reporting bacj to passport.js
+   // done is the callback function which is reporting bacj to passport.js
+   function(req,email,password,done)  {     
 
       //find the user and establish the identity
-      User.findOne({email: email},function(err,user){  // first email is property and from schema and second email is parameter which we passes in the above function
+       // first email is property and from schema and second email is parameter which we passes in the above function
+      User.findOne({email: email},function(err,user){ 
           if(err){
-              console.log("error in finding user --> passport")
+              req.flash('error',err)
               // this will report an error to passport
               return done(err);
           }
 
           if(!user || user.password!=password){
-              return console.log("invalid user name or password")
-              //authentication is false
+             req.flash('error', "Invalid user name or password")
+            //authentication is false
               return done(null,false)
           }
             // if user is found

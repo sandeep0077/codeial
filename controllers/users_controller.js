@@ -77,6 +77,7 @@ module.exports.create = function (req, res) {
 }
 
 //get up the signin form data
+// when the user has signed in create session is called
 module.exports.createSession = function (req, res) {
     //create a flash message
     req.flash('success','Logged In Sucessfully')
