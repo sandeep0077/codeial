@@ -20,6 +20,14 @@
     <div id="header-div">
         <%- include('_header'); -%>
     </div>
+ <!-- locals have flash from res.locals.flash(middleware.js)-->
+ <!-- flash.success.length is checking if it has the message like // logged out sucessfully // logged in // u have been logged out---->
+    <% if(flash.success && flash.success.length > 0) {%>
+             <h5>
+                 <%= flash.success %>
+             </h5>         
+
+        <% } %>
 
     <main id="layout-main">
         <%- body -%>

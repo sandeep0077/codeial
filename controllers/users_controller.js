@@ -78,11 +78,17 @@ module.exports.create = function (req, res) {
 
 //get up the signin form data
 module.exports.createSession = function (req, res) {
+    //create a flash message
+    req.flash('success','Logged In Sucessfully')
     return res.redirect('/')
 }
 
 module.exports.destroySession = function(req,res){
     req.logout();
+       //create a flash message which needed to be passed on to the html/ejs template
+       req.flash('success','Logged Out')
+       // now this flash message needs to be send with response but then we have to pass this request with every reponse
+       // insted we will create our custom middlewear for it. Create a middleware i config folder 
     return res.redirect('/')
 }
 
