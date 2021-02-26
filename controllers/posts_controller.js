@@ -9,7 +9,7 @@ module.exports.create = async function (req, res) {
     //creating a post in database
 
     try {
-        await Post.create({
+      let post =   await Post.create({
             content: req.body.content,
             //passing the user
             // we took this user._id through req from "passport.setAuthenticatedUser" in "index.js"(codeial)
@@ -17,6 +17,21 @@ module.exports.create = async function (req, res) {
             //which is present in "passport-local-strategy"
             user: req.user._id
         });
+
+        //Check if the request comming is xhr request
+        if(req.xhr){
+            // return some json..we treturn json with the ststus
+          return res.status(200).json({
+                data: {
+                    post: post,
+                },
+                // the general form of intracting when sending back data by json
+                message:"Post created"
+            })
+        }
+
+
+
         req.flash('success', "post created succesfully")
         return res.redirect('back');
 
