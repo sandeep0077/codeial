@@ -1,31 +1,35 @@
-<header>
+<header id="layout-header">
+    <nav>
+        <div class="mini-logo">
+            <p>
+                <a href='/'>
+                    codeial
+                </a>
+            </p>
+        </div>
     
-        Codeial
-    
-    <ul>
-        <% if (locals.user){ %>
-          <!-- if the user is signedin then we need to show the user name and the signedout link -->
-          <li>
-              <a href="/user/profile/<%= user.id %>">
-            <%=user.name %>
-            </a>
-          </li>
-          <li>
-              <a href="/user/sign-out">Sign Out</a>
-          </li>
-          
-        <%} else {%>
+        <div class="auth-links">
+            <ul>
+                <% if (locals.user){ %>
+                <li>
+                    <a href="/user/profile"><%= user.name %></a>
+                </li>
+                <li>
+                    <a href="/user/sign-out">Sign Out</a>
+                </li>
+                <% }else{ %>
+                <li>
+                    <a href="/user/sign-in">Sign In</a>
+                </li>
+                <li>
+                    <a href="/user/sign-up">Sign Up</a>
+                </li>
+        
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+ 
 
-            <li>
-                <a href="/user/sign-in">SignIn</a>
-            </li>
 
-
-            
-            <li>
-                <a href="/user/sign-up">SignUp</a>
-            </li>
-
-        <% } %>
-    </ul>
 </header>
