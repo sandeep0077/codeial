@@ -1,6 +1,7 @@
 //importing the model for schema from user.js(models)
 const User = require('../models/user');
-
+const fs = require('fs')
+const path = require('path');
 
 module.exports.profile = function(req, res) {
     // show the profile of the user to which this id belongs to
@@ -17,16 +18,7 @@ module.exports.profile = function(req, res) {
 
 
 module.exports.update = async function(req,res){
-    // check if the current loggedin user is requesting update form
-    // if(req.user.id == req.params.id){
-    //   User.findByIdAndUpdate(req.params.id,req.body,function(err,user){})
-    //   req.flash('success', 'Updated!');      
-    //   return res.redirect('back');
-    // }else{
-    //     // frist time handling error
-    //    
-    // }
-
+  
     if(req.user.id == req.params.id){
 
         try {
@@ -40,6 +32,11 @@ module.exports.update = async function(req,res){
                user.email = req.body.email;
                
                if(req.file){
+
+                if(user.avatar){
+                    // to delete the existing image file if there is one
+                    fs.unlinkSync(path.join(__dirname, '..', user.avatar))
+                }
                    // this is saving the path of the uploaded file into the avatar fiels in the user
                    user.avatar = User.avatarPath + '/' + req.file.filename
                }
